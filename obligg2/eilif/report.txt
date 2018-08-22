@@ -1,0 +1,28 @@
+1. Kompleksiteten til findLoops():
+  Dette er en rekursiv metode.
+  Den kaller på seg selv |V| antall ganger maks, hvor |V| er antall Tasks (forutsatt at den ikke finner en loop).
+  Dermed blir kompleksiteten
+    O(|V|) (?)
+
+2. Kompleksiteten til topologicalSorting(): og backwardsSorting():
+  Her bruker jeg en ganske standard topologisk sortering, hvor hver node blir
+  besøkt kun en gang, og hver kant blir besøkt kun en gang.
+
+  Dermed ender vi opp med en kompleksitet på O(|E| + |V|).
+
+3. Kompleksiteten til PrintData():
+  Først må vi se på prioritetskøene.
+  Dette er en del av java-bibiloteket, men slik jeg forsto det så kan vi anta at
+  den har en kompleksitet på O(log n).
+
+  Så puttes Tasks inn i køene, hvor da den totale kompleksiteten blir:
+    n*2(log (n)) (n fordi vi looper gjennom 1 gang pr Task).
+  resultatet blir da
+    nlog(n)
+
+  Så kan vi se på de etterfølgene løkkene:
+    Kompleksiteten til de indre for-loopsene er: O(|N|),
+      N = antall Tasks - De som allerede har blitt startet eller avsluttet.
+    Kompleksiteten til den ytre for-loopen er: O(|M|), M = kortest mulig prosjekttid.
+
+  Den sammlede kompleksiteten blir da nlog(n) + |m|*2*|n| = nlog(n).

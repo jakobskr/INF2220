@@ -1,0 +1,524 @@
+Buildhouse1.txt:
+  Time: 0
+    starting task 5
+  current staff: 2
+  Time: 4
+    starting task 1
+    starting task 6
+    ending task 5
+  current staff: 4
+  Time: 6
+    ending task 6
+  current staff: 2
+  Time: 8
+    starting task 2
+    ending task 1
+  current staff: 4
+  Time: 14
+    starting task 3
+    starting task 4
+    starting task 7
+    ending task 2
+  current staff: 7
+  Time: 15
+    ending task 4
+    ending task 3
+  current staff: 2
+  Time: 18
+    starting task 8
+    ending task 7
+  current staff: 4
+  Time: 22
+    ending task 8
+  current staff: 0
+
+  task ID: 1
+  Name                  : Build-walls
+  Required time         : 4
+  Required manpower     : 2
+  Earliest start        : 4
+  Latest starting time  : 4
+  Slack                 : is critical
+  Dependend tasks       :
+    ID  : 2
+    ID  : 3
+task ID: 2
+  Name                  : Build-roofs
+  Required time         : 6
+  Required manpower     : 4
+  Earliest start        : 8
+  Latest starting time  : 8
+  Slack                 : is critical
+  Dependend tasks       :
+    ID  : 3
+    ID  : 4
+    ID  : 7
+  task ID: 3
+    Name                  : Put-on-wallpapers
+    Required time         : 1
+    Required manpower     : 2
+    Earliest start        : 14
+    Latest starting time  : 17
+    Slack                 : 3
+    Dependend tasks       :
+      ID  : 8
+  task ID: 4
+    Name                  : Put-on-tiles
+    Required time         : 1
+    Required manpower     : 3
+    Earliest start        : 14
+    Latest starting time  : 21
+    Slack                 : 7
+    Dependend tasks       : none
+  task ID: 5
+    Name                  : Build-foundation
+    Required time         : 4
+    Required manpower     : 2
+    Earliest start        : 0
+    Latest starting time  : 0
+    Slack                 : is critical
+    Dependend tasks       :
+      ID  : 1
+      ID  : 6
+  task ID: 6
+    Name                  : Make-floor
+    Required time         : 2
+    Required manpower     : 2
+    Earliest start        : 4
+    Latest starting time  : 12
+    Slack                 : 8
+    Dependend tasks       :
+      ID  : 7
+  task ID: 7
+    Name                  : Put-carpet-floor
+    Required time         : 4
+    Required manpower     : 2
+    Earliest start        : 14
+    Latest starting time  : 14
+    Slack                 : is critical
+    Dependend tasks       :
+      ID  : 8
+  task ID: 8
+    Name                  : Move-in
+    Required time         : 4
+    Required manpower     : 4
+    Earliest start        : 18
+    Latest starting time  : 18
+    Slack                 : is critical
+    Dependend tasks       : none
+
+buildhouse2.txt:
+  Opps! The project is unrealizable due to a loop in Tasks:
+  Build-walls(ID: 1) ->Build-roofs(ID: 2) ->Put-on-wallpapers(ID: 3) ->Make-floor(ID: 6) ->Build-walls(ID: 1)(end)
+
+buildrail.txt:
+  Time: 0
+    starting task 9
+  current staff: 10
+  Time: 3
+    starting task 10
+    starting task 16
+    starting task 17
+    starting task 11
+    starting task 12
+    starting task 14
+    ending task 9
+  current staff: 56
+  Time: 4
+    starting task 18
+    starting task 19
+    starting task 20
+    ending task 11
+  current staff: 64
+  Time: 5
+    starting task 2
+    ending task 10
+  current staff: 70
+  Time: 12
+    ending task 2
+  current staff: 60
+  Time: 16
+    starting task 23
+    ending task 20
+  current staff: 61
+  Time: 28
+    starting task 15
+    ending task 14
+  current staff: 61
+  Time: 29
+    ending task 19
+  current staff: 57
+  Time: 33
+    starting task 13
+    ending task 12
+  current staff: 57
+  Time: 38
+    ending task 16
+  current staff: 45
+  Time: 44
+    starting task 21
+    ending task 18
+  current staff: 46
+  Time: 46
+    starting task 26
+    ending task 23
+  current staff: 48
+  Time: 48
+    starting task 22
+    ending task 17
+    ending task 15
+  current staff: 29
+  Time: 51
+    starting task 8
+    ending task 13
+  current staff: 24
+  Time: 59
+    starting task 24
+    ending task 21
+  current staff: 26
+  Time: 63
+    starting task 3
+    ending task 8
+  current staff: 29
+  Time: 64
+    starting task 25
+    ending task 22
+    ending task 3
+  current staff: 21
+  Time: 66
+    ending task 26
+  current staff: 14
+  Time: 119
+    starting task 4
+    ending task 24
+  current staff: 13
+  Time: 124
+    starting task 27
+    starting task 5
+    ending task 25
+  current staff: 22
+  Time: 134
+    ending task 4
+  current staff: 16
+  Time: 136
+    ending task 5
+  current staff: 10
+  Time: 149
+    starting task 29
+    starting task 28
+    ending task 27
+  current staff: 20
+  Time: 179
+    ending task 28
+  current staff: 10
+  Time: 186
+    starting task 30
+    starting task 7
+    starting task 1
+    starting task 6
+    ending task 29
+  current staff: 29
+  Time: 204
+    ending task 7
+  current staff: 23
+  Time: 206
+    starting task 31
+    ending task 30
+    ending task 1
+  current staff: 13
+  Time: 213
+    ending task 6
+  current staff: 7
+  Time: 218
+    ending task 31
+  current staff: 0
+
+
+  task ID: 1
+    Name                  : Install-pavement
+    Required time         : 20
+    Required manpower     : 10
+    Earliest start        : 186
+    Latest starting time  : 198
+    Slack                 : 12
+    Dependend tasks       : none
+  task ID: 2
+    Name                  : Install-railing
+    Required time         : 7
+    Required manpower     : 10
+    Earliest start        : 5
+    Latest starting time  : 211
+    Slack                 : 206
+    Dependend tasks       : none
+  task ID: 3
+    Name                  : Install-ticketmachine
+    Required time         : 1
+    Required manpower     : 10
+    Earliest start        : 63
+    Latest starting time  : 217
+    Slack                 : 154
+    Dependend tasks       : none
+  task ID: 4
+    Name                  : Paint-tower-1-with-arch
+    Required time         : 15
+    Required manpower     : 6
+    Earliest start        : 119
+    Latest starting time  : 203
+    Slack                 : 84
+    Dependend tasks       : none
+  task ID: 5
+    Name                  : Paint-tower-2
+    Required time         : 12
+    Required manpower     : 6
+    Earliest start        : 124
+    Latest starting time  : 206
+    Slack                 : 82
+    Dependend tasks       : none
+  task ID: 6
+    Name                  : Paint-trusses
+    Required time         : 27
+    Required manpower     : 6
+    Earliest start        : 186
+    Latest starting time  : 191
+    Slack                 : 5
+    Dependend tasks       : none
+  task ID: 7
+    Name                  : Paint-cables-and-rods
+    Required time         : 18
+    Required manpower     : 6
+    Earliest start        : 186
+    Latest starting time  : 200
+    Slack                 : 14
+    Dependend tasks       : none
+  task ID: 8
+    Name                  : Put-lane-tunnel-and-intersection
+    Required time         : 12
+    Required manpower     : 7
+    Earliest start        : 51
+    Latest starting time  : 194
+    Slack                 : 143
+    Dependend tasks       :
+      ID  : 3
+      ID  : 31
+  task ID: 9
+    Name                  : Setup-barrack
+    Required time         : 3
+    Required manpower     : 10
+    Earliest start        : 0
+    Latest starting time  : 0
+    Slack                 : is critical
+    Dependend tasks       :
+      ID  : 10
+      ID  : 11
+      ID  : 12
+      ID  : 14
+      ID  : 16
+      ID  : 17
+  task ID: 10
+    Name                  : Prepare-storage
+    Required time         : 2
+    Required manpower     : 4
+    Earliest start        : 3
+    Latest starting time  : 209
+    Slack                 : 206
+    Dependend tasks       :
+      ID  : 2
+  task ID: 11
+    Name                  : Rig-ramspace-reinforcing
+    Required time         : 1
+    Required manpower     : 4
+    Earliest start        : 3
+    Latest starting time  : 8
+    Slack                 : 5
+    Dependend tasks       :
+      ID  : 18
+      ID  : 19
+      ID  : 20
+  task ID: 12
+    Name                  : Build-tunnel
+    Required time         : 30
+    Required manpower     : 12
+    Earliest start        : 3
+    Latest starting time  : 146
+    Slack                 : 143
+    Dependend tasks       :
+      ID  : 13
+  task ID: 13
+    Name                  : Clean-tunnel
+    Required time         : 18
+    Required manpower     : 12
+    Earliest start        : 33
+    Latest starting time  : 176
+    Slack                 : 143
+    Dependend tasks       :
+      ID  : 8
+  task ID: 14
+    Name                  : Build-intersection
+    Required time         : 25
+    Required manpower     : 12
+    Earliest start        : 3
+    Latest starting time  : 149
+    Slack                 : 146
+    Dependend tasks       :
+      ID  : 15
+  task ID: 15
+    Name                  : Clean-intersection
+    Required time         : 20
+    Required manpower     : 12
+    Earliest start        : 28
+    Latest starting time  : 174
+    Slack                 : 146
+    Dependend tasks       :
+      ID  : 8
+  task ID: 16
+    Name                  : Build-towerfoundation-1
+    Required time         : 35
+    Required manpower     : 12
+    Earliest start        : 3
+    Latest starting time  : 14
+    Slack                 : 11
+    Dependend tasks       :
+      ID  : 21
+  task ID: 17
+    Name                  : Build-towerfoundation-2
+    Required time         : 45
+    Required manpower     : 12
+    Earliest start        : 3
+    Latest starting time  : 3
+    Slack                 : is critical
+    Dependend tasks       :
+      ID  : 22
+  task ID: 18
+    Name                  : Make-armouring-tower-1
+    Required time         : 40
+    Required manpower     : 4
+    Earliest start        : 4
+    Latest starting time  : 9
+    Slack                 : 5
+    Dependend tasks       :
+      ID  : 21
+  task ID: 19
+    Name                  : Make-armouring-tower-2
+    Required time         : 25
+    Required manpower     : 4
+    Earliest start        : 4
+    Latest starting time  : 23
+    Slack                 : 19
+    Dependend tasks       :
+      ID  : 22
+  task ID: 20
+    Name                  : Make-armouring-arch
+    Required time         : 12
+    Required manpower     : 4
+    Earliest start        : 4
+    Latest starting time  : 144
+    Slack                 : 140
+    Dependend tasks       :
+      ID  : 23
+  task ID: 21
+    Name                  : Encase-and-armour-tower-1
+    Required time         : 15
+    Required manpower     : 5
+    Earliest start        : 44
+    Latest starting time  : 49
+    Slack                 : 5
+    Dependend tasks       :
+      ID  : 24
+  task ID: 22
+    Name                  : Encase-and-armour-tower-2
+    Required time         : 16
+    Required manpower     : 5
+    Earliest start        : 48
+    Latest starting time  : 48
+    Slack                 : is critical
+    Dependend tasks       :
+      ID  : 25
+  task ID: 23
+    Name                  : Encase-and-armour-arch
+    Required time         : 30
+    Required manpower     : 5
+    Earliest start        : 16
+    Latest starting time  : 156
+    Slack                 : 140
+    Dependend tasks       :
+      ID  : 26
+  task ID: 24
+    Name                  : Cast-tower-1
+    Required time         : 60
+    Required manpower     : 7
+    Earliest start        : 59
+    Latest starting time  : 64
+    Slack                 : 5
+    Dependend tasks       :
+      ID  : 4
+      ID  : 27
+  task ID: 25
+    Name                  : Cast-tower-2
+    Required time         : 60
+    Required manpower     : 7
+    Earliest start        : 64
+    Latest starting time  : 64
+    Slack                 : is critical
+    Dependend tasks       :
+      ID  : 5
+      ID  : 27
+  task ID: 26
+    Name                  : Cast-arch
+    Required time         : 20
+    Required manpower     : 7
+    Earliest start        : 46
+    Latest starting time  : 186
+    Slack                 : 140
+    Dependend tasks       :
+      ID  : 31
+  task ID: 27
+    Name                  : Stretch-two-maincables
+    Required time         : 25
+    Required manpower     : 10
+    Earliest start        : 124
+    Latest starting time  : 124
+    Slack                 : is critical
+    Dependend tasks       :
+      ID  : 28
+      ID  : 29
+  task ID: 28
+    Name                  : Build-truss-1-with-rods
+    Required time         : 30
+    Required manpower     : 10
+    Earliest start        : 149
+    Latest starting time  : 156
+    Slack                 : 7
+    Dependend tasks       :
+      ID  : 1
+      ID  : 6
+      ID  : 7
+      ID  : 30
+  task ID: 29
+    Name                  : Build-truss-2-with-rods
+    Required time         : 37
+    Required manpower     : 10
+    Earliest start        : 149
+    Latest starting time  : 149
+    Slack                 : is critical
+    Dependend tasks       :
+      ID  : 1
+      ID  : 6
+      ID  : 7
+      ID  : 30
+  task ID: 30
+    Name                  : Cast-lane-on-truss
+    Required time         : 20
+    Required manpower     : 7
+    Earliest start        : 186
+    Latest starting time  : 186
+    Slack                 : is critical
+    Dependend tasks       :
+      ID  : 31
+  task ID: 31
+    Name                  : Polish-lane-on-arch
+    Required time         : 12
+    Required manpower     : 7
+    Earliest start        : 206
+    Latest starting time  : 206
+    Slack                 : is critical
+    Dependend tasks       : none

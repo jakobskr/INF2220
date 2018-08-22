@@ -1,0 +1,163 @@
+import java.util.Random;
+
+public class VenstreRadix {
+  static int NUM_BIT = 8;
+  final static int MIN_NUM = 50; // mellom 16 og 60, kvikksort bruker 47
+  static int ANTALL_KALL = 0;
+
+  public static double vRadixMulti2 (int[] a) {
+    long tt = System.nanoTime();
+    int [] b = new int [a.length];
+    int max = 0;
+    for (int i = 0;i <a.length; i++) {
+      if (a[i] > max) {
+        max = a[i];
+      }
+    }
+
+    int numbit = 2;
+    while (max >= (1<<numbit)) {
+      numbit++;
+    }
+
+    /*
+    if (NUM_BIT > numbit) {
+      NUM_BIT = numbit / 2;
+    }*/
+
+    System.out.println("for forste kall");
+    venstreRadix2(a, b, 0, a.length, numbit, NUM_BIT);
+    System.arraycopy(b, 0, a, 0, a.length);
+    double tid = (System.nanoTime() -tt)/1000000.0;
+    System.out.println("ANTALL_KALL " + ANTALL_KALL);
+    testSort(a);
+    return tid;
+  }
+
+  static public void venstreRadix2 ( int [] a, int [] b, int left, int right, int shift, int maskLen) {
+    int mask = (1 << maskLen) - 1;
+    int[] count = new int[mask + 1];
+    //System.out.println("\nnytt kall");
+    //System.out.println("shift " + shift);/*
+    //System.out.println("count size " + count.length);
+    //System.out.println("mask " + mask);
+    //System.out.println("left " + left + " right " + right);
+    //
+    //  if (right - left <= 0) {
+    //    System.out.println(right - left);
+    //    return;
+    //  }
+
+    for (int i = left; i < right; i++ ) {
+      //System.out.println(a[i] + " " + (a[i]>>shift) + " " + (Integer.toBinaryString((a[i]>>shift) & mask)));
+      count[(a[i]>>shift) & mask]++;
+    }
+
+    int acumVal = left, j = 0;
+    for(int i = 0; i < count.length; i++){
+      j = count[i];
+      count[i] = acumVal;
+      acumVal += j;
+    }
+/*
+     System.out.println("\nmuh count");
+     for (int i: count) {
+       System.out.println(i);
+     }
+
+     /*
+     System.out.println("\nmuh index");
+     for (int i: index) {
+       System.out.println(i);
+     }*/
+
+     //System.out.println("mask in bin " + Integer.toBinaryString(mask));
+
+     //System.out.println("\na in binary");
+     /*
+    for (int i = left; i <= right ;i++ ) {
+      System.out.println(Integer.toBinaryString(a[i]));
+    }
+    */
+    //System.out.println("setter inn i b fra a");
+
+    for (int i = left;i < right;i++) {
+       //System.out.println(a[i] + " " + left);
+       //System.out.println(a[i] + " " + ((a[i]>>shift) & mask) );
+       b[count[(a[i]>>shift) & mask]++] = a[i];
+       //System.out.println(b[i]);
+    }
+    /*
+    System.out.println("b after sort " + shift);
+      for (int i = left;i < right; i++) {
+        System.out.println(b[i]);
+      }
+    /*
+    System.out.println("\nmuh count");
+    for (int i: count) {
+    System.out.println(i);
+    }*/
+
+    if (shift == 0) {
+      return;
+    }
+
+    if (shift - NUM_BIT <= 0) {
+    shift = 0;
+    }
+    else {
+      shift = shift - NUM_BIT;
+    }
+
+    System.arraycopy(b, 0, a, 0, a.length);
+    //left er startindexen til sifferverdien
+    //count[i] er sluttindexen til sifferverdien
+    for (int i = 0; i < count.length ;i++ ) {
+      if (left == count[i]) {
+        continue;
+      }
+      if (count[i] - left < MIN_NUM) {
+      //System.out.println("right - left " + (count[i] - left));
+      insertSort(b,left, count[i]);
+    }
+    else {
+    venstreRadix2(a,b, left, count[i] , shift, NUM_BIT);
+    }
+    left = count[i];
+    }
+  }//lukker
+
+
+
+  static public void insertSort(int [] a , int left, int right) {
+    //ANTALL_KALL++;
+    //System.out.println("insertSort values " + left + " " + right);
+    int i, t;
+    for (int k = left ; k < right - 1; k++) {
+      // Invariant: a[0..k] er sortert, skal
+      // nå sortere a[k+1] inn på riktig plass
+      if (a[k] > a[k+1]) {
+        t = a[k+1];
+        i = k;
+        do{ // gå bakover, skyv de andre
+          // og finn riktig plass for ’t’
+          a[i+1] = a[i];
+          i--;
+        }
+        while (i >= left && a[i] > t);
+        a[i+1] = t;
+      }
+    }
+  } //end 1insertSort
+
+static public void testSort(int [] a){
+  for (int i = 0; i< a.length-1;i++) {
+    if (a[i] > a[i+1]){
+      System.out.println("SorteringsFEIL på: "+
+      i +" a["+i+"]:"+a[i]+" > a["+(i+1)+"]:"+a[i+1]);
+      return;
+      }
+    }
+  }
+
+}

@@ -1,0 +1,4 @@
+Tidskompleksitet for de forkjellige problemene:
+  realizability blir O(|V| + |E|) siden hver node og kant bare blir behandlet en gang.
+  tidsoptimaliseringen er også O(|v| + |e|) siden det er dybdesøk for å sette earliest start i nodenen.
+  og latest start blir også O(|v| + |e|) siden det er et breddesøk som bruke nabolister. slack blir O(v) siden den bare besøker hver node en gang.
